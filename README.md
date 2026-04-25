@@ -3,7 +3,8 @@
 ###  Date:  20:4:2026
 
 # AIM:
-To develop a Python program to plot a time series graph using the given Salary dataset, where Age is taken as the x-axis and Salary is taken as the y-axis, in order to analyze the relationship and trend between age and salary.
+
+To develop a Python program to plot a time series graph using the given stock dataset, where Date is taken as the x-axis and Volume is taken as the y-axis, in order to analyze the trading activity and trends of stock volume over time.
 
 # Software Required:
 
@@ -11,7 +12,7 @@ Google Colab
 
 # Dataset : 
 
-Salary.csv
+TSLA.csv
 
 
 # ALGORITHM:
@@ -24,31 +25,32 @@ Salary.csv
 # PROGRAM:
 
 ```
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 import pandas as pd
 
-# Read dataset
-df = pd.read_csv("/content/Salary_Data.csv")
+df = pd.read_csv("/content/TSLA.csv")
 
-# Scatter plot
-plt.figure(figsize=(8,5))
-plt.scatter(df['Age'], df['Salary'], color='blue')
+df['Date'] = pd.to_datetime(df['Date'])
+df.set_index('Date', inplace=True)
 
-# Title and labels
-plt.title("Age vs Salary")
-plt.xlabel("Age")
-plt.ylabel("Salary")
+plt.figure(figsize=(12,6))
 
-# Grid
+plt.plot(df.index, df['Volume'], linewidth=2, color='red')
+
+plt.xlabel('Date')
+plt.ylabel('Volume')
+plt.title('Stock Volume Over Time')
+
+plt.xticks(rotation=45)
 plt.grid(True)
 
-# Show plot
+plt.tight_layout()
 plt.show()
 ```
 
 # OUTPUT:
 
-<img width="721" height="470" alt="image" src="https://github.com/user-attachments/assets/874b56aa-cdae-436d-9b87-3c0b79a59b9f" />
+<img width="1607" height="745" alt="Screenshot 2026-04-25 082113" src="https://github.com/user-attachments/assets/fe4aee7a-89c7-4b7e-9756-268fa861dcb3" />
 
 # RESULT:
 Thus we have created the python code for plotting the time series of given data.
